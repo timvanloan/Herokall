@@ -3,8 +3,6 @@ require 'sinatra'
 require 'twilio-ruby'
 
 # set up a client to talk to the Twilio REST API
-@TWILIO_SID = 'ACd9231060db7729e15299dc1179b3c191'
-@TWILIO_TOKEN = 'ceaa4efa34b330f1e5072470066c84ae'
 CLIENT = Twilio::REST::Client.new ENV['TWILIO_SID'], ENV['TWILIO_TOKEN']
 
 # This renders the initial form page to accept the users phone number
@@ -44,7 +42,7 @@ post '/submit' do
   call = CLIENT.account.calls.create(
    :from => '+14156898306',
     :to => params[:phone],
-    :url => 'http://electric-dusk-6529.heroku.com/aftercall'
+    :url => "#{request.host}/aftercall"
   )  
   return html
 end
