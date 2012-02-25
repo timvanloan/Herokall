@@ -44,7 +44,7 @@ post '/submit' do
   call = CLIENT.account.calls.create(
    :from => '+14156898306',
     :to => params[:phone],
-    :url => 'http://electric-dusk-6529.heroku.com/aftercall'
+    :url => '/aftercall'
   )  
   return html
 end
