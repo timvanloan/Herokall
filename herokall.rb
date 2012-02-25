@@ -3,6 +3,7 @@ require 'sinatra'
 require 'twilio-ruby'
 
 # set up a client to talk to the Twilio REST API
+# you need to make sure you set your Twilio SID and Token in your Heroku Config/environmental variables
 CLIENT = Twilio::REST::Client.new ENV['TWILIO_SID'], ENV['TWILIO_TOKEN']
 
 # This renders the initial form page to accept the users phone number
@@ -19,7 +20,7 @@ post '/aftercall' do
   content_type 'text/xml'
     "<Response>
          <Say>We are now connecting you with a registered nurse</Say>
-          <Dial>415-778-3056</Dial>
+          <Dial>ENTER_THE_NURSE_PHONE_NUMBER_HERE</Dial>
     </Response>"
 end
 
@@ -33,16 +34,16 @@ post '/submit' do
   
   # sends the user a SMS message for followup info
   CLIENT.account.sms.messages.create(
-    :from => '+14156898306',
+    :from => 'YOUR_TWILIO_CALLER_ID',
     :to => params[:phone],
     :body => 'We hope our nurse was able to help. Please find addtional tips for staying healthy at http://www.cdc.gov/family/tips/'
   )
 
 # calls the user at the phone number they specificed
   call = CLIENT.account.calls.create(
-   :from => '+14156898306',
+   :from => 'YOUR_TWILIO_CALLER_ID',
     :to => params[:phone],
-    :url => '#{request.host}/aftercall'
+    :url => 'ENTER_YOUR_APPHOST_HERE/aftercall'
   )  
   return html
 end
