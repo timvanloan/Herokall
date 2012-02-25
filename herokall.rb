@@ -42,7 +42,7 @@ post '/submit' do
   call = CLIENT.account.calls.create(
    :from => '+14156898306',
     :to => params[:phone],
-    :url => "#{request.host}/aftercall"
+    :url => '#{request.host}/aftercall'
   )  
   return html
 end
