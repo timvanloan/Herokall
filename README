@@ -7,7 +7,7 @@ user along with some related health items they may be interested in.
 
 For the code to be functional, you'll also need a Twilio account (sign up at http://twilio.com). 
 
-For this code, I assume you enter your Twilio SID and Token credentials into your Heroku config file. 
+For this code, I assume you have entered your Twilio SID and Twilio Token credentials into your Heroku config file.
 
 Hope you enjoy the app!
 Tim
